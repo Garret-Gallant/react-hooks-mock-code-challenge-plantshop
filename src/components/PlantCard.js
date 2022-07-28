@@ -1,8 +1,9 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
-function PlantCard({plant}) {
-  const {name, image, price} = plant
+function PlantCard( {plant} ) {
+  const {id, name, image, price} = plant
   const [stock, setStock] = useState(true)
+  
   function changeStock(){
     setStock((stock) => !stock)
   }
@@ -17,6 +18,7 @@ function PlantCard({plant}) {
       ) : (
         <button onClick={changeStock}>Out of Stock</button>
       )}
+      <button onClick={console.log('replace with CRUD Delete = clientside UI delete')}>Delete</button>
     </li>
   );
 }
