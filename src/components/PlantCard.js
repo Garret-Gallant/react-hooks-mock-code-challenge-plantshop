@@ -1,11 +1,18 @@
 import React, {useEffect, useState} from "react";
 
-function PlantCard( {plant} ) {
+function PlantCard( {handleDeletePlant, plant} ) {
   const {id, name, image, price} = plant
   const [stock, setStock] = useState(true)
   
   function changeStock(){
     setStock((stock) => !stock)
+  }
+
+  function handleDeleteClick(){
+    fetch(`http://localhost:6001/plants/${id}`, {
+      method: 'DELETE'
+    });
+    handleDeletePlant(id)
   }
   
   return (
@@ -18,7 +25,7 @@ function PlantCard( {plant} ) {
       ) : (
         <button onClick={changeStock}>Out of Stock</button>
       )}
-      <button onClick={console.log('replace with CRUD Delete = clientside UI delete')}>Delete</button>
+      <button onClick={handleDeleteClick}>Delete</button>
     </li>
   );
 }

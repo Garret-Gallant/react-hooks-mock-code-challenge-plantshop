@@ -12,6 +12,11 @@ function PlantPage() {
     setPlants([...plants, newPlantObject])
   }
 
+  function handleDeletePlant(id){
+    const newPlants = plants.filter((plants) => plants.id != id)
+    setPlants(newPlants)
+  }
+
   const plantsToDisplay = plants.filter((plant) => plant.name.toLowerCase().includes(search.toLowerCase()))
   
   useEffect(() => {
@@ -24,7 +29,7 @@ function PlantPage() {
     <main>
       <NewPlantForm handleAddNewPlant={handleAddNewPlant} />
       <Search search={search} setSearch={setSearch} handleSearch={plantsToDisplay}/>
-      <PlantList plants={plantsToDisplay} />
+      <PlantList handleDeletePlant={handleDeletePlant} plants={plantsToDisplay} />
     </main>
   );
 }
